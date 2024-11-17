@@ -1,0 +1,17 @@
+validate:
+  image: gramener/builderrors
+  script: builderrors --skip=prettier --skip=eslint
+
+deploy:
+  stage: deploy
+  script: deploy
+  variables:
+    SERVER: gramener.com
+    URL: financedatacomparison
+    VERSION: py3v1
+    PORT: 8030
+    # SETUP: npm install --production
+    CORS: enabled
+  environment:
+    name: production
+    url: https://gramener.com/reconciledata/
